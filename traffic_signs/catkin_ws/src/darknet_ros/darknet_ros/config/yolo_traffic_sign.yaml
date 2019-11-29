@@ -1,0 +1,20 @@
+yolo_model:
+
+  config_file:
+    name: traffic_sign.cfg
+  weight_file:
+    name: traffic_sign_7000.weights
+  threshold:
+    value: .8
+  detection_classes:
+    names:
+      - stop_sign
+      - pedestrain_walk
+      - parking
+      - right_turn
+      - left_turn
+      - yield
+      - speed_10
+      - speed_15
+      - speed_20
+      - speed_25
