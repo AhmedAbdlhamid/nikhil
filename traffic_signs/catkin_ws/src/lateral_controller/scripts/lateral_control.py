@@ -41,6 +41,7 @@ class NeuralControl:
         value=rospy.Subscriber('/darknet_ros/bounding_boxes',BoundingBoxes, speed_controller)
         self.image = None
         self.image_processed = False
+        self.default_speed = float(sys.argv[2])
 
 
     def controller_cb(self, image): 
@@ -172,10 +173,10 @@ if __name__ == "__main__":
 		    	    joy_pub.publish(joy_data)
                     elif (sign==None):   
                             print(' none  ')
-                            joy_data.throttle = sys.argv[2]
+                            joy_data.throttle = neural_control.default_speed
 		    	    joy_pub.publish(joy_data)	     
  		else:
-                    joy_data.throttle = 0.0
+                    joy_data.throttle = neural_control.default_speed
 		    joy_pub.publish(joy_data)	     
 
                 print(prediction)

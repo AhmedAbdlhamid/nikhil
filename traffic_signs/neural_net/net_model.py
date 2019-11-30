@@ -73,7 +73,34 @@ class NetModel:
     #
     def _model(self):
         
-        if self.config.net_model_type == const.NET_TYPE_MIR:
+        if self.config.net_model_type == const.NET_TYPE_NIKHIL:
+            input_shape = (self.config.image_size[1], self.config.image_size[0],
+                           self.config.image_size[2])
+
+            self.model = Sequential([
+                    Lambda(lambda x: x/127.5 - 1.0, input_shape=input_shape),
+                    Conv2D(24, (5, 5), strides=(2,2), activation='relu', padding='same'),
+                    #MaxPooling2D(pool_size=(2, 2), strides=(1, 1)),
+                    Conv2D(36, (5, 5), strides=(2,2), activation='relu', padding='same'),
+                    #MaxPooling2D(pool_size=(2, 2)),
+                    Conv2D(48, (5, 5), strides=(2,2), activation='relu', padding='same'),
+                    #MaxPooling2D(pool_size=(2, 2)),
+                    Conv2D(64, (3, 3), activation='relu', padding='same'),
+                    #MaxPooling2D(pool_size=(2, 2)),
+                    Conv2D(64, (3, 3), activation='relu', padding='same'),
+                    #MaxPooling2D(pool_size=(2, 2)),
+                    Flatten(),
+                    #Dropout(0.5),
+                    Dense(100, activation='relu'),
+                    #Dropout(0.5),
+                    Dense(50, activation='relu'),
+                    #Dropout(0.5),
+                    Dense(10, activation='relu'),
+                    Dense(self.config.num_outputs)])
+            self.model.summary()
+            self._compile()
+
+        elif self.config.net_model_type == const.NET_TYPE_MIR:
         
             input_shape = (self.config.image_size[1], self.config.image_size[0],
                            self.config.image_size[2])
