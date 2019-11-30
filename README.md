@@ -1,6 +1,18 @@
 # Traffic Sign Reconition
 
-## How to use
+Assumption: the BIMI lab folder layout.
+
+## How to Use
+
+### Preparation Environments
+
+Create two environments.
+
+```
+$ cd ~bimi/robotics/av/envs/
+$ conda env create -f ros.yaml
+$ conda env create -f neural_net.yaml
+```
 
 Enable ROS environment.
 
