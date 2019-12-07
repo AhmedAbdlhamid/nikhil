@@ -18,8 +18,8 @@ class Config:
         self.raw_scale = const.RAW_SCALE      # Multiply raw input by this scale
         self.jitter_tolerance = const.JITTER_TOLERANCE # joystick jitter
        
-        self.net_model_type = const.NET_TYPE_CE491 
+        self.net_model_type = const.NET_TYPE_NIKHIL 
 
-        if self.net_model_type == const.NET_TYPE_CE491:
+        if self.net_model_type == const.NET_TYPE_NIKHIL:
             self.image_size = (const.IMAGE_WIDTH, const.IMAGE_HEIGHT, const.IMAGE_DEPTH)
             self.capture_area = (const.CROP_X1, const.CROP_Y1, const.CROP_X2, const.CROP_Y2)

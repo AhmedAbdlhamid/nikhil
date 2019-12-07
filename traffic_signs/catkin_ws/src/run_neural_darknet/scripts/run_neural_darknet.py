@@ -111,7 +111,7 @@ class NeuralControlDarknet:
 def main():
 
     if len(sys.argv) != 3:
-        exit('Usage:\n$ rosrun run_neural run_neural_darknet.py weight_file_name default_speed(0~1)')
+        exit('Usage:\n$ rosrun run_neural_darknet run_neural_darknet.py weight_file_name default_speed(0~1)')
 
     # ready for neural network
     neural_control = NeuralControlDarknet(sys.argv[1], float(sys.argv[2]))
@@ -137,7 +137,7 @@ def main():
             if int(time.time() - time_s) > STOP_SIGN_PAUSE_SEC:
                 neural_control.brake = False
                 joy_data.brake = 0
-                joy_data.throttle = 1.0 # to restart
+                joy_data.throttle = 1.0 # to restart from stopping
                 joy_pub.publish(joy_data)
                 time_r = time.time()
             else:
