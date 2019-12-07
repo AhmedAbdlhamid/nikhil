@@ -19,12 +19,19 @@ from data_augmentation import DataAugmentation
 class DriveTrain:
     
     ###########################################################################
-    # data_path = 'path_to_drive_data'  e.g. ../data/2017-09-22-10-12-34-56'
+    # data_path = 'path_to_drive_data'  e.g. ../data/2017-09-22-10-12-34-56/'
     def __init__(self, data_path):
         
-        model_name = data_path[data_path.rfind('/'):] # get folder name
-        model_name = model_name.strip('/')
-        csv_path = data_path + '/' + model_name + '.csv' # use it for csv file name 
+        if data_path[-1] == '/':
+            data_path = data_path[:-1]
+
+        loc_slash = data_path.rfind('/')
+        if loc_slash != -1: # there is '/' in the data path
+            model_name = data_path[loc_slash:] # get folder name
+            #model_name = model_name.strip('/')
+        else:
+            model_name = data_path
+        csv_path = data_path + model_name + const.DATA_EXT  # use it for csv file name 
         
         self.csv_path = csv_path
         self.train_generator = None
@@ -79,8 +86,7 @@ class DriveTrain:
 
                     for image_name, measurement in batch_samples:
                         
-                        image_path = self.data_path + '/' + image_name + \
-                                     self.config.fname_ext
+                        image_path = self.data_path + '/' + image_name
                         image = cv2.imread(image_path)
                         image = cv2.resize(image, (self.config.image_size[0],
                                                    self.config.image_size[1]))

@@ -9,17 +9,25 @@ Assumption: the BIMI lab folder layout.
 Create two environments.
 
 ```
-$ cd ~bimi/robotics/av/envs/
+$ cd ~/bimi/robotics/av/envs/
 $ conda env create -f ros.yaml
 $ conda env create -f neural_net.yaml
 ```
 
-Enable ROS environment.
+## Folder layout
+```
+- traffic_signs: your home folder for this project
+  - catkin_ws: ROS workspace
+  - darknet: Neural network for object detection using Yolo-v3
+  - neural_net: Deep neural network module for training and testing your car
+  - weights: trained network parameters (.h5) and network architecture (.json)
+```
 
-`$ conda activate ros`
+## Contributions
 
-Start the simulation environment with rviz.
+This project would not be possible without many contributors including Jaerock Kwon, Ahmed, Nikhil, Ninad, and Balu with many generous open source projects including car_demo (osrf), CAT Vehicle, dbw_mkz, etc. 
+ 
+## License
 
-`$ roslaunch car_demo test_track.launch`
-
+CC0-1.0.
 

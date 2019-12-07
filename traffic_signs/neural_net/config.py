@@ -8,35 +8,18 @@ import const
 
 class Config:
     def __init__(self): # model_name):
-        self.version = (0, 4) # version 0.4
-        self.valid_rate = 0.3
-        self.fname_ext = '.jpg'
-        self.num_epochs = 20
-        self.batch_size = 16
-        self.num_outputs = 1  # steering_angle, throttle
-        #self.raw_scale = 1.0 # Multiply raw input by this scale
-        #self.jitter_tolerance = 0.009 # joystick jitter
+        self.version = (const.VERSION_MAJOR, const.VERSION_MINOR) 
+        self.valid_rate = const.VALID_RATE
+        self.fname_ext = const.IMAGE_EXT
+        self.data_ext = const.DATA_EXT
+        self.num_epochs = const.NUM_EPOCH
+        self.batch_size = const.BATCH_SIZE
+        self.num_outputs = const.NUM_OUTPUT   # steering_angle, throttle
+        self.raw_scale = const.RAW_SCALE      # Multiply raw input by this scale
+        self.jitter_tolerance = const.JITTER_TOLERANCE # joystick jitter
        
-        #net_model_type = (0)Nikhil
-        #                 (1)Jkwon-Shobhit,
-        #                 (2)Nvidia, 
-        #                 (3)SqueezeNet (Transfer_Learning),
-        #                 (4)MirNet_C (LSTM-fc6),
-        #                 (5)MirNet_L (LSTM-fc8),
-        #                 (6)Transfer_Learning_ResNet
-        self.net_model_type = const.NET_TYPE_NIKHIL #NET_TYPE_MIR
+        self.net_model_type = const.NET_TYPE_CE491 
 
-        if self.net_model_type == const.NET_TYPE_NIKHIL:
-            self.image_size = (200, 66, 3)
-            self.capture_area = (0,402,800,800)
-
-        elif self.net_model_type == const.NET_TYPE_SQUEEZE or self.net_model_type == const.NET_TYPE_RESNET: 
-            # Transfer_Learning_ResNet, SqueezeNet
-            self.image_size = (400, 200, 3)       
-            self.capture_area = (0,370,800,620)
-        else: 
-            #Jkwon-Shobhit, Nvidia, MirNet_C, MirNet_L
-            self.image_size = (160, 70, 3)
-            self.capture_area = (0,380,800,800)
-        #self.capture_size = (self.capture_area[3]-self.capture_area[1], 
-        #                     self.capture_area[2]-self.capture_area[0], 3)
+        if self.net_model_type == const.NET_TYPE_CE491:
+            self.image_size = (const.IMAGE_WIDTH, const.IMAGE_HEIGHT, const.IMAGE_DEPTH)
+            self.capture_area = (const.CROP_X1, const.CROP_Y1, const.CROP_X2, const.CROP_Y2)

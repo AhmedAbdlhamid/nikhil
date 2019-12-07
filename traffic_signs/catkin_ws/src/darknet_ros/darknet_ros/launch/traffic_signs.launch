@@ -20,7 +20,7 @@
 
 <!-- bolt model -->
  <arg name="model" default="$(find bolt_description)/urdf/bolt.urdf"/>
-  <arg name="rvizconfig" default="$(find car_demo)/rviz/demo.rviz" />
+  <arg name="rvizconfig" default="$(find car_demo)/rviz/traffic_signs.rviz" />
 
   <param name="robot_description" textfile="$(arg model)"/>
 
