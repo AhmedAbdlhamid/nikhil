@@ -1,0 +1,10 @@
+download the labelled images for training from link
+
+https://drive.google.com/drive/folders/1VU9IDQ4Qx3Otaz3JMabbe1V9rYK_rxwQ?usp=sharing
+
+
+Save the downloaded images in the directory /obj.
+
+
+train.txt already provided in the /obj directory.
+
